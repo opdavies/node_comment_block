@@ -36,9 +36,9 @@ function node_comment_block_block_view($delta = '') {
 
         $block['content'] = '';
 
-        $comments = comment_node_page_additions($node);
+        global $_node_comment_block_comments;
 
-        if ($comments) {
+        if ($comments = $_node_comment_block_comments) {
           $show_form = variable_get('node_comment_block_show_form_' . $delta, 1);
           $show_comments = variable_get('node_comment_block_show_comments_' . $delta, 1);
           if (!$show_form) {
@@ -58,6 +58,15 @@ function node_comment_block_block_view($delta = '') {
   }
 
   return $block;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function node_comment_block_node_view($node, $view_mode) {
+  // Store the comments in a global variable so that they can be rendered later.
+  global $_node_comment_block_comments;
+  $_node_comment_block_comments = isset($node->content['comments']) ? $node->content['comments'] : '';
 }
 
 /**
