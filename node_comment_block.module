@@ -31,7 +31,9 @@ function node_comment_block_block_view($delta = '') {
       $node = node_load($nid);
 
       if ($node->comment != 0) {
-        $block['subject'] = NULL; // This should be NULL otherwise there will be duplicate h2 elements.
+        // This should be NULL otherwise there will be duplicate h2 elements.
+        $block['subject'] = NULL;
+
         $block['content'] = '';
 
         $comments = comment_node_page_additions($node);
