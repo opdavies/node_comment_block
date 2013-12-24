@@ -26,7 +26,7 @@ function node_comment_block_block_view($delta = '') {
     if (arg(0) == 'node' && is_numeric($nid = arg(1)) && !arg(2)) {
       $node = node_load($nid);
 
-      if ($node->comment !== 0) {
+      if ($node->comment != 0) {
         $block['subject'] = NULL; // This should be NULL otherwise there will be duplicate h2 elements.
         $block['content'] = '';
 
